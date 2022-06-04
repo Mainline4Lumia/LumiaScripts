@@ -20,7 +20,7 @@ input_list_slice_start = input_list[input_list.index([line for line in input_lis
 input_list_slice_end = input_list_slice_start[: input_list_slice_start.index(ending_line) + ending_line_offset]
 
 
-xml_hex_list = "".join([line[32:80] for line in input_list_slice_end]).split(", ")
+xml_hex_list = "".join([line[32:80] for line in input_list_slice_end]).split(", ") # Get rid of comments from the ACPI decompiler + make into list
 xml_data = "".join(chr(int(i, 16)) for i in xml_hex_list)
 
 args.outputfile.writelines(xml_data)
