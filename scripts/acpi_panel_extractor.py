@@ -10,13 +10,13 @@ args = parser.parse_args()
 
 input_list = args.inputfile.readlines()
 
-starting_line = "            Method (_ROM, 3, NotSerialized)  // _ROM: Read-Only Memory\n"
-starting_line_offset = 4
+starting_line_contains = "Name (PCFG,"
+starting_line_offset = 1
 
 ending_line = "                })\n"
 ending_line_offset = 0
 
-input_list_slice_start = input_list[input_list.index(starting_line) + starting_line_offset :]
+input_list_slice_start = input_list[input_list.index([line for line in input_list if starting_line_contains in line][0]) + starting_line_offset :]
 input_list_slice_end = input_list_slice_start[: input_list_slice_start.index(ending_line) + ending_line_offset]
 
 
